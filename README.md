@@ -8,15 +8,6 @@
 
 solid component rendering text according to given regexes
 
-> **Note** After using this template, you have to search and replace all `@bigmistqke/solid-regex-component` and similar strings
-> with appropriate texts.
->
-> `@bigmistqke/solid-regex-component` should be a **kebab-case** string representing the name of you monorepo.
->
-> `solid component rendering text according to given regexes` should be a **Normal case** string with the description of the repository.
->
-> `bigmistqke` should be a **kebab-case** string from your profile URL.
-
 ## Quick start
 
 Install it:
@@ -33,4 +24,26 @@ Use it:
 
 ```tsx
 import @bigmistqke/solid-regex-component from '@bigmistqke/solid-regex-component'
+
+function App(){
+  return <RegexComponent
+    value="*this* is a [*link*](https://www.example.com)"
+    regexes={{
+      '/\\*(.*?)\\*/g': (match, [content], recurse) => {
+        return <b>*{recurse(content)}*</b>
+      },
+      '/\\[([^\\]]+)\\]\\(([^)]+)\\)/g': (match, [content, link], recurse) => {
+        return (
+          <>
+            [{recurse(content)}](
+            <a href={link} target="_blank" rel="noopener noreferrer">
+              {link}
+            </a>
+            )
+          </>
+        )
+      }
+    }}
+  >
+}
 ```
