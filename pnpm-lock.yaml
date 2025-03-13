@@ -8,6 +8,9 @@ importers:
 
   .:
     devDependencies:
+      '@bigmistqke/solid-contenteditable':
+        specifier: ^0.0.10
+        version: 0.0.10(solid-js@1.8.17)
       '@types/node':
         specifier: ^20.12.12
         version: 20.12.12
@@ -225,6 +228,12 @@ packages:
   '@babel/types@7.24.5':
     resolution: {integrity: sha512-6mQNsaLeXTw0nxYUYu+NSa4Hx4BlF1x1x8/PMFbiR+GBSr+2DkECc69b8hgy2frEodNcvPffeH8YfWd3LI6jhQ==}
     engines: {node: '>=6.9.0'}
+
+  '@bigmistqke/solid-contenteditable@0.0.10':
+    resolution: {integrity: sha512-qk2FcunUYn1KI2Xze5KPQCnnLktGW1csDnsKmPhMZ3yP0cG9DAzybkhBj7ES3yVu5FaHBkzZCadkU52GiUAjRw==}
+    engines: {node: '>=18', pnpm: '>=9.0.0'}
+    peerDependencies:
+      solid-js: ^1.6.0
 
   '@esbuild/aix-ppc64@0.19.12':
     resolution: {integrity: sha512-bmoCYyWdEL3wDQIVbcyzRyeKLgk2WtWLTWz1ZIAZF/EGbNOwSA6ew3PftJ1PqMiOOGu0OyFMzG53L0zqIpPeNA==}
@@ -2396,6 +2405,12 @@ snapshots:
       '@babel/helper-string-parser': 7.24.1
       '@babel/helper-validator-identifier': 7.24.5
       to-fast-properties: 2.0.0
+
+  '@bigmistqke/solid-contenteditable@0.0.10(solid-js@1.8.17)':
+    dependencies:
+      eslint-scope: 7.2.2
+      eslint-visitor-keys: 3.4.3
+      solid-js: 1.8.17
 
   '@esbuild/aix-ppc64@0.19.12':
     optional: true
