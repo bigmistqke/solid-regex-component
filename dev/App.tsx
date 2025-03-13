@@ -9,7 +9,7 @@ function Hidden(props: { children: JSX.Element }) {
 const App: Component = () => {
   return (
     <div class="card">
-      <h2>Regex Component Demo2</h2>
+      <h2>Regex Component Demo</h2>
       <div style={{ 'margin-top': '1rem', 'white-space': 'pre-wrap' }}>
         <ContentEditable
           textContent={`Here's a [*link*](https://www.example.com) and some *bold* text with _italic_ text, ~~strikethrough~~ and __underlined__ formatting. Another [link](https://solidjs.com)
