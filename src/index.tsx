@@ -66,7 +66,6 @@ function filterMatches(matches: Match[]) {
 export function RegexComponent(props: RegexProps) {
   function regexToComponent(value: Accessor<string>) {
     const patternStates = new Map<string, PatternState>()
-
     const segments = createMemo(() => {
       const matches: Match[] = []
       let text = value()

@@ -1,0 +1,11 @@
+body {
+  margin: 0;
+  background-color: #282c34;
+  padding: 20px;
+  overscroll-behavior: none;
+  color: white;
+}
+
+a {
+  color: rgb(143, 143, 255);
+}

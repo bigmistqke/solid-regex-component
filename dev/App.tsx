@@ -1,18 +1,15 @@
 import { ContentEditable } from '@bigmistqke/solid-contenteditable'
-import { Component, type JSX } from 'solid-js'
+import { Component, createSignal, type JSX } from 'solid-js'
 import { RegexComponent } from '../src'
+import './App.css'
 
 function Hidden(props: { children: JSX.Element }) {
   return <span style={{ display: 'none' }}>{props.children}</span>
 }
 
 const App: Component = () => {
-  return (
-    <div class="card">
-      <h2>Regex Component Demo</h2>
-      <div style={{ 'margin-top': '1rem', 'white-space': 'pre-wrap' }}>
-        <ContentEditable
-          textContent={`Here's a [*link*](https://www.example.com) and some *bold* text with _italic_ text, ~~strikethrough~~ and __underlined__ formatting. Another [link](https://solidjs.com)
+  const [text, setText] =
+    createSignal(`Here's a [*link*](https://www.example.com) and some *bold* text with _italic_ text, ~~strikethrough~~ and __underlined__ formatting. Another [link](https://solidjs.com)
 
 Unordered list:
 - _First_ *item*
@@ -22,14 +19,22 @@ Unordered list:
 Ordered list:
 1. First numbered *item*
 2. Second numbered item
-3. Third numbered item`}
+3. Third numbered item`)
+  return (
+    <div class="card">
+      <h2>Regex Component Demo</h2>
+      {/* <textarea onInput={e => setText(e.currentTarget.value)}>{text()}</textarea> */}
+      <div style={{ 'margin-top': '1rem', 'white-space': 'pre-wrap' }}>
+        <ContentEditable
+          style={{ padding: '20px' }}
+          textContent={text()}
           render={content => (
             <RegexComponent
               value={content()}
               regexes={{
                 // Match ordered list items (e.g., "1. Item")
-                '/(?:^\\d+\\. .+$(?:\r?\n|$))+/gm': (match, _, recurse) => {
-                  console.log('Creating ordered list:', match)
+                '/(?:^\\d+\\. .+$(?:\r?\n|$))+/gm': (match, groups, recurse) => {
+                  console.log('Creating ordered list:', { match, groups })
                   return (
                     <ol style={{ 'white-space': 'nowrap' }}>
                       <RegexComponent
@@ -38,7 +43,7 @@ Ordered list:
                           '/^(\\d+. )(.+)$/gm': (match, [prefix, content]) => {
                             console.log('Creating unordered list item:', content)
                             return (
-                              <li>
+                              <li style={{ 'white-space': 'pre' }}>
                                 <Hidden>{prefix}</Hidden>
                                 {recurse(content)}
                               </li>
@@ -61,7 +66,7 @@ Ordered list:
                           '/^(- )(.+)$/gm': (match, [prefix, content]) => {
                             console.log('Creating unordered list item:', content)
                             return (
-                              <li>
+                              <li style={{ 'white-space': 'pre' }}>
                                 <Hidden>{prefix}</Hidden>
                                 {recurse(content)}
                               </li>
